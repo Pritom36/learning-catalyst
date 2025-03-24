@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Flashcard Learning App</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/tailwind.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        .faq-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .faq-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            background-color: #f8f9fa;
+            padding-left: 10px;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1rem;
+            opacity: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #4F46E5, #7C3AED);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 5s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .faq-item svg {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active svg {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
+    <div class="container mx-auto py-12 px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center gradient-text animate__animated animate__fadeIn">Frequently Asked Questions</h1>
+        
+        <div class="faq-section animate__animated animate__fadeInUp">
+            <h2 class="text-2xl font-bold mb-4 gradient-text">General Questions</h2>
+            <div class="faq-item">
+                <h3 class="text-xl font-semibold flex items-center justify-between">
+                    What is the Flashcard Learning App?
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </h3>
+                <div class="faq-answer text-gray-600">
+                    The Flashcard Learning App is an educational tool designed to help users learn and practice vocabulary through interactive flashcards.
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="text-xl font-semibold flex items-center justify-between">
+                    How does it work?
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </h3>
+                <div class="faq-answer text-gray-600">
+                    Create your own flashcards or use pre-made sets. Study them through various learning modes and track your progress over time.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section animate__animated animate__fadeInUp animate__delay-1s">
+            <h2 class="text-2xl font-bold mb-4 gradient-text">Technical Questions</h2>
+            <div class="faq-item">
+                <h3 class="text-xl font-semibold flex items-center justify-between">
+                    What devices are supported?
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </h3>
+                <div class="faq-answer text-gray-600">
+                    Our app works on all modern devices including smartphones, tablets, and computers through any web browser.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section animate__animated animate__fadeInUp animate__delay-2s">
+            <h2 class="text-2xl font-bold mb-4 gradient-text">Support</h2>
+            <p class="text-gray-600">If you have any other questions or need further assistance, please 
+                <a href="#" class="text-indigo-600 hover:text-indigo-800 transition">contact support</a>.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+    "users": [
+        {
+            "username": "test",
+            "secretCode": "test123",
+            "expiryDate": "2025-2-31",
+            "active": true,
+            "name": "Test User"
+        },
+        {
+            "username": "user1",
+            "secretCode": "pass1",
+            "expiryDate": "2025-12-31",
+            "active": false,
+            "name": "User One"
+        },
+        {
+            "username": "tijhil",
+            "secretCode": "tonok",
+            "expiryDate": "2026-12-31",
+            "active": true,
+            "name": "User Two"
+        },
+        {
+            "username": "Prithul",
+            "secretCode": "sayon",
+            "expiryDate": "2026-12-31",
+            "active": true,
+            "name": "User Three"
+        },
+        {
+            "username": "Urmi",
+            "secretCode": "bonna",
+            "expiryDate": "2026-12-31",
+            "active": true,
+            "name": "User Four"
+        }
+
+    ]
+}

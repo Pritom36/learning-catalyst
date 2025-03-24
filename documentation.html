@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Flashcard Learning App</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/tailwind.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #4F46E5, #7C3AED);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-item {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            background: #f3f4f6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover {
+            background: #e5e7eb;
+            transform: translateX(10px);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-down">Documentation</h1>
+        
+        <section class="section-card" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-4 text-indigo-600">Introduction</h2>
+            <p class="text-gray-700 leading-relaxed">Welcome to the Flashcard Learning App documentation. This guide will help you understand how to use the app effectively.</p>
+        </section>
+
+        <section class="section-card" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-4 text-indigo-600">Getting Started</h2>
+            <p class="text-gray-700 leading-relaxed">To get started, simply open the app and navigate through the different sections using the buttons provided.</p>
+        </section>
+
+        <section class="section-card" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-4 text-indigo-600">Features</h2>
+            <ul class="space-y-2">
+                <li class="feature-item">✨ Vocabulary Flashcards</li>
+                <li class="feature-item">🎯 Practice Mode</li>
+                <li class="feature-item">📝 Exam Mode</li>
+                <li class="feature-item">📚 Flashcard Sets</li>
+                <li class="feature-item">🌙 Dark Mode</li>
+                <li class="feature-item">💬 Feedback</li>
+            </ul>
+        </section>
+
+        <section class="section-card" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-4 text-indigo-600">Usage</h2>
+            <p class="text-gray-700 leading-relaxed">Each section of the app is designed to help you learn and practice vocabulary in different ways. Use the search bar to find specific words, and navigate through flashcards using the provided buttons.</p>
+        </section>
+
+        <section class="section-card" data-aos="fade-up">
+            <h2 class="text-2xl font-bold mb-4 text-indigo-600">Support</h2>
+            <p class="text-gray-700 leading-relaxed">If you encounter any issues or have any questions, please refer to the FAQ page or contact support.</p>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+    </script>
+</body>
+</html>
