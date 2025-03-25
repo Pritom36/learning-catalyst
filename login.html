@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,75 +9,410 @@
     <link rel="stylesheet" href="css/tailwind.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary: #7c3aed;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius-sm: 0.375rem;
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2) format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiA.woff2) format('woff2');
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            line-height: 1.5;
+            color: var(--dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 32rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: var(--transition);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-content {
+            padding: 2.5rem;
+        }
+
+        .title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            position: relative;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textShine 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textShine {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3rem;
+            height: 0.25rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 0.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .form-group:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9375rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.1) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            transition: var(--transition);
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .admin-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .avatar-container {
+            position: relative;
+            margin-right: 1.25rem;
+        }
+
+        .admin-avatar {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Active status indicator - positioned correctly at bottom right */
+        .active-status {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: #10b981;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .admin-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .admin-title {
+            font-size: 0.8125rem;
+            color: var(--gray);
+        }
+
+        .admin-message {
+            color: var(--dark);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #25D366;
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+
+        .whatsapp-icon {
+            margin-right: 0.625rem;
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .login-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-content {
+                padding: 1.75rem 1.5rem;
+            }
+
+            .whatsapp-btn span {
+                display: none;
+            }
+
+            .whatsapp-btn {
+                padding: 0.875rem;
+                width: 3.25rem;
+                height: 3.25rem;
+                justify-content: center;
+            }
+
+            .whatsapp-icon {
+                margin-right: 0;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-r from-blue-100 to-purple-100">
-    <div class="container mx-auto px-4 py-8 animate__animated animate__fadeIn">
-        <div class="flex justify-center">
-            <div class="w-full md:max-w-xl lg:max-w-2xl bg-white p-4 md:p-8 rounded-lg shadow-2xl transform hover:scale-[1.02] transition-all duration-300">
-                <h1 class="text-2xl md:text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 animate__animated animate__pulse animate__infinite">
-                    Welcome to Flashcard Learning
-                </h1>
+
+<div class="login-container">
+    <div class="login-content">
+        <h1 class="title">Welcome Catalystian</h1>
                 <form id="loginForm" class="mb-6">
-                    <div class="mb-4 transform hover:-translate-y-1 transition-all duration-300">
-                        <label for="username" class="block text-gray-700 mb-2 text-sm md:text-base">Username</label>
-                        <input type="text" id="username" class="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="Enter your username">
                     </div>
-                    <div class="mb-4 transform hover:-translate-y-1 transition-all duration-300">
-                        <label for="secretCode" class="block text-gray-700 mb-2 text-sm md:text-base">Secret Code</label>
-                        <input type="password" id="secretCode" class="w-full p-2 text-sm md:text-base border rounded focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300">
+                    <div class="form-group">
+                        <label for="secretCode">Secret Code</label>
+                        <input type="password" id="secretCode" class="form-control"
+                            placeholder="Enter your secret code">
                     </div>
                     <div id="alertMessage" class="mb-4 hidden">
                         <div class="p-4 rounded-lg text-sm font-medium"></div>
                     </div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 text-sm md:text-base rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 animate__animated animate__pulse animate__infinite">
-                        Login
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Login
                     </button>
                 </form>
-                <div class="flex justify-center mb-6">
-                    <button id="guestBtn" class="bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-2 text-sm md:text-base rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
-                        Continue as Guest
-                    </button>
-                </div>
-                <div class="border-t pt-4 mt-4 animate__animated animate__fadeInUp">
-                    <div class="flex flex-col md:flex-row items-start md:items-center mb-4">
-                        <div class="relative self-center md:self-start mb-4 md:mb-0 md:mr-4">
-                            <img src="images/admin.jpg" alt="Admin Profile" 
-                                 class="w-16 h-16 md:w-24 md:h-24 rounded-full border-4 border-blue-500 shadow-lg object-cover hover:rotate-6 transform transition-all duration-300">
-                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white animate-ping"></div>
+
+                <button id="guestBtn" class="btn btn-secondary">
+                    <i class="fas fa-user-secret mr-2"></i> Continue as Guest
+                </button>
+
+                <div class="admin-section">
+                    <div class="admin-profile">
+                        <div class="avatar-container">
+                            <img src="images/admin.jpg" alt="Admin Profile" class="admin-avatar">
+                            <div class="active-status"></div>
                         </div>
-                        <h3 class="text-lg md:text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 text-center md:text-left">
-                            হাই পোলাপান
-                        </h3>
+                        <div>
+                            <div class="admin-name">হাই পোলাপান</div>
+                            <div class="admin-title">Catalystian Mentor</div>
+                        </div>
                     </div>
-                    <div class="space-y-4 text-sm md:text-base">
-                        <p class="text-gray-600 hover:text-gray-800 transition-colors duration-300">
-                            আমি আমার এই html এর h6 এর মতন ছোট্ট জীবনে ভোদাইয়ের মতন যতগুলো আজাইরা vocabulary শিখসি, তোমাদের স্মার্ট বানানোর মহান ব্রত নিয়ে দিন আর রাত দুটোরে fevicol আঠা দিয়ে এক করে এবং নিজের প্রিয়তমার সহিত বরাদ্দ করা সময় ফাঁকি
-                            দিয়ে 🗿, অতিব টেনশনমূলক এবং গুরুত্বপূর্ণ বড়ো বড়ো শব্দের ঠোঙা ( I mean vocabulary) এক জায়গায় গুঁজে দিয়েছি। অতএব, রিলসে আঙুল চালিয়ে জীবনের RAM নষ্ট না করে, এখানে গুতাগুতি করো, তাতে অন্তত ২ মেগাবাইট জ্ঞান ইনস্টল হবে!
-                        </p>
-                        <p class="text-gray-600 hover:text-gray-800 transition-colors duration-300">
-                            আর হ্যাঁ এতো কষ্ট করে কিছু বানিয়ে ফ্রিতে দেওয়া হারাম, এতে নিজের প্রতি অবিচার করা হয় আর তোমরা সবাই জানো, আমি হারাম খাই না 😤। আবার বাঙালি সভাব ফ্রিতে দিলে সেটারে ফুটো পয়সার দাম দেয় না। 
-                            তাই আমার সাথে যোগাযোগ করে মাত্র ৫০ টাকা দিয়ে পুরো ৬ মাসের জন্য ads না দেখে চালাতে পারো । নতুবা continue as guest এ click করে নিত্য নতুন ads এর সঙ্গি হয়ে থাকা লাগবে 💀।
-                        </p>
-                        <p class="text-gray-600 hover:text-gray-800 transition-colors duration-300">
-                            📢 শিক্ষার নামে ধৈর্যের পরীক্ষা দিও না, ঝটপট যোগাযোগ করে Secret Code নিয়ে নাও
-                        </p>
-                    </div>
+                <div>
+                    <p class="admin-message">
+                        আমি আমার এই html এর h6 এর মতন ছোট্ট জীবনে ভোদাইয়ের মতন যতগুলো আজাইরা vocabulary শিখসি, তোমাদের স্মার্ট বানানোর মহান ব্রত নিয়ে দিন আর রাত দুটোরে fevicol আঠা দিয়ে এক করে এবং নিজের প্রিয়তমার সহিত বরাদ্দ করা সময় ফাঁকি দিয়ে 🗿, অতিব টেনশনমূলক এবং গুরুত্বপূর্ণ বড়ো বড়ো শব্দের ঠোঙা (I mean vocabulary) এক জায়গায় গুঁজে দিয়েছি।
+                    </p>
+                    
+                    <p class="admin-message">
+                        আর হ্যাঁ এতো কষ্ট করে কিছু বানিয়ে ফ্রিতে দেওয়া হারাম, এতে নিজের প্রতি অবিচার করা হয় আর তোমরা সবাই জানো, আমি হারাম খাই না 😤। আবার বাঙালি সভাব ফ্রিতে দিলে সেটারে ফুটো পয়সার দাম দেয় না। 
+                    </p>
+                    
+                    <p class="admin-message">
+                        📢 শিক্ষার নামে ধৈর্যের পরীক্ষা দিও না, ঝটপট যোগাযোগ করে Secret Code নিয়ে নাও
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
+
     <!-- WhatsApp Chat Box -->
-    <div class="fixed bottom-4 right-4 animate__animated animate__fadeIn">
-        <a href="https://wa.me/+8801737697736" target="_blank" class="flex items-center bg-green-500 text-white px-3 py-2 md:px-4 md:py-2 rounded-full hover:bg-green-600 transition-all duration-300 shadow-lg text-sm md:text-base">
-            <svg class="w-5 h-5 md:w-6 md:h-6 mr-1 md:mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 6.628 5.373 12 12 12 6.628 0 12-5.373 12-12 0-6.628-5.373-12-12-12zm6.248 16.745l-.097.061c-1.412.892-3.052 1.344-4.647 1.344-4.877 0-8.846-3.969-8.846-8.846 0-4.877 3.969-8.846 8.846-8.846 4.877 0 8.846 3.969 8.846 8.846 0 1.596-.452 3.236-1.344 4.647l-.061.097-.217 1.122 1.122-.217z"/>
-            </svg>
-            <span class="hidden md:inline">Chat with Admin</span>
-        </a>
-    </div>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+8801737697736" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        <span>Chat with Admin</span>
+    </a>
 
     <script src="js/login.js"></script>
 </body>
+
 </html>
