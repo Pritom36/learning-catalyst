@@ -1,3 +1,24 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7ff;
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #121826;
+    color: #e2e8f0;
+}
+
+.dark-mode .card {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+}
+
 .flashcard {
     width: 300px;
     height: 200px;
@@ -465,6 +486,7 @@ body.dark-mode {
     color: #e0e0e0;
     transition: all 0.2s ease;
 }
+
 
 
 
